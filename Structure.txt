@@ -1,0 +1,47 @@
+##Frame Structure
+frame = {
+	elements : [htmlelement1, htmlelement2],
+	actions : [customHandlerFunc],
+	id : 1239034,
+	data : [
+		{
+			type : "subtract",
+			csskey : "height",
+			amount : 2
+		},
+		{
+			type : "add",
+			csskey : "left",
+			amount : 12
+		},
+		{
+			type : "merge",
+			csskey : "backgroundColor",
+			initial : "#000000",
+			end : [255,255,255],
+			amount : 0.7
+		},
+		{
+			type : "assign",
+			select : "before",
+			csskey : "New Content"
+		},
+		{
+			type : "modifyChild",
+			child : {tag: "a", class: "special", other: {"href":"$.jpg"}},
+			frame : frame
+		},
+		{
+			type : "custom",
+			data : "I am text"
+		}
+	]
+}
+
+actions will be called with Function.call(frame) to preserve scope
+actions are not necessary, as long as the frames are of the add, subtract, assign, merge, or modifyChild type.
+Any action supplied will be called whenever a custom-type frame is encountered.
+
+modifyChild frames cannot be added automatically and must be inserted with jsa.insert.frame(setID, frameID, frame)
+
+Note that frame/set inserting would be best handled before initializing the loop.
