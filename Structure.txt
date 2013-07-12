@@ -1,6 +1,7 @@
 ##Frame Structure
+```
 frame = {
-	elements : [htmlelement1, htmlelement2],
+	elements : [htmlelement1ref, htmlelement2ref],
 	actions : [customHandlerFunc],
 	id : 1239034,
 	data : [
@@ -23,12 +24,12 @@ frame = {
 		},
 		{
 			type : "assign",
-			select : "before",
-			csskey : "New Content"
+			csskey : "backgroundImage",
+			value : "../images/bgimage.png"
 		},
 		{
 			type : "modifyChild",
-			child : {tag: "a", class: "special", other: {"href":"$.jpg"}},
+			child : {tag: "a", className: "special", other: {"href":"$.jpg"}},
 			frame : frame
 		},
 		{
@@ -38,7 +39,13 @@ frame = {
 	]
 }
 
-actions will be called with Function.call(frame) to preserve scope
+frameSet = {
+	setID = 123,
+	frames : []
+}
+```
+
+actions will be called with Function.call(frame, element) to preserve scope
 actions are not necessary, as long as the frames are of the add, subtract, assign, merge, or modifyChild type.
 Any action supplied will be called whenever a custom-type frame is encountered.
 
