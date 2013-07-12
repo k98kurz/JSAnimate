@@ -212,11 +212,14 @@ jsa.insert = {
 	},
 	frameset : function (frameset) {
 		var i;
+		if (frameset.setID<1) {
+			frameset.setID = (jsa.loop.sets.length+jsa.loop.insert.sets.length);
+		}
 		jsa.loop.insert.sets.push(frameset);
 		if (jsa.loop.clock==0) {
 			jsa.insert.run();
 		}
-		return jsa.loop.sets.length-1;
+		return frameset.setID;
 	},
 	run : function () {
 		var i;
